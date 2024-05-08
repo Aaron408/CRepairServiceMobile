@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native";
 import { Input, Icon, Button } from "@rneui/themed";
+import Toast from "react-native-toast-message";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import Logo from "../../assets/BlackLogo.png";
-
+import { useAuth } from "../../contexts/AuthContext";
+import { validateEmail } from "../../services/EmailTest"; //return true if email is valid
+import Loading from "../../components/Loading";
 export default function Login() {
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [keyboardActive, setKeyboardActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loginForm, setLoginForm] = useState(initalizeForm());
+  const {signIn} = useAuth(); //Context for the app flow
 
   const handleKeyboardDidShow = () => {
     setKeyboardActive(true);
@@ -15,6 +21,29 @@ export default function Login() {
   const handleKeyboardDidHide = () => {
     setKeyboardActive(false);
   };
+
+  //Logic for handle changes and send data to auth
+  const handleChange = (e, target) =>{
+    setLoginForm({...loginForm, [target]: e.nativeEvent.text});
+  }
+
+  const validateLogIn = async() => {
+    if(validateEmail(loginForm.email)){
+      //if email is valid
+      console.log('valid email');
+      setLoading(true);
+      setTimeout(()=>{
+        setLoading(false);
+      }, 5000)
+    }else{
+      //show a toast
+      Toast.show({
+        type: 'info',
+        text1: 'Invalid Email',
+        text2: 'please check your email'
+      });
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,6 +68,7 @@ export default function Login() {
             <Input
               inputStyle={styles.input}
               inputContainerStyle={{ borderBottomWidth: 0 }}
+              onChange={(e)=>handleChange(e,'email')}
             />
             <Icon
               name="email"
@@ -53,6 +83,7 @@ export default function Login() {
               inputStyle={styles.input}
               secureTextEntry={!visiblePassword}
               inputContainerStyle={{ borderBottomWidth: 0 }}
+              onChange={(e)=>handleChange(e,'password')}
             />
             <Icon
               name={visiblePassword ? "eye-off-outline" : "eye-outline"}
@@ -68,6 +99,7 @@ export default function Login() {
           buttonStyle={styles.button}
           containerStyle={styles.buttonContainer}
           titleStyle={styles.buttonTitle}
+          onPress={validateLogIn}
         />
 
         <View style={styles.registerContainer}>
@@ -75,6 +107,7 @@ export default function Login() {
             <Text style={styles.registerLink}>Register now</Text>
           </Text>
         </View>
+        <Loading isVisible={loading} text={'STARTING...'}/>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
@@ -156,7 +189,7 @@ const styles = StyleSheet.create({
   },
   registerContainer: {
     alignSelf: "flex-end",
-    paddingRight: "13%",
+    paddingRight: "10%",
     paddingTop: 5,
   },
   registerText: {
@@ -164,6 +197,15 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   registerLink: {
-    color: "#0426FF",
+    color: "#454038",
+    fontWeight: '700',
+    textDecorationLine: 'underline',
   },
 });
+
+function initalizeForm(){
+  return {
+    email: null,
+    password: null
+  }
+}
