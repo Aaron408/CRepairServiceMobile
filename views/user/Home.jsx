@@ -1,19 +1,23 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useNavigation } from '@react-navigation/native';
 import { Button } from '@rneui/themed'
 import { useAuth } from '../../contexts/AuthContext';
-export default function Home({ route }) {
-    const { state } = route.params;
-    const {signOut} = useAuth();
+
+//Tab Screens
+import Profile from './Profile';
+
+export default function Home() {
+  const {state, signOut} = useAuth();
+  const navigation = useNavigation();
     return (
-      <View>
-        <Text>Home</Text>
-        <Button
-          title={'Close Session'}
-          onPress={() => signOut()}
-        />
-        <Text>Hello {state.userToken}</Text>
-      </View>
+    <View>
+      <Text>
+      Hola soy una screen {state?.userToken}
+      </Text>
+      <Button title='Cerrar sesion' onPress={signOut}/>
+    </View>
     );
   }
   

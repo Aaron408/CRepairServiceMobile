@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native";
 import { Input, Icon, Button } from "@rneui/themed";
+import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import Logo from "../../assets/BlackLogo.png";
@@ -13,7 +14,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [loginForm, setLoginForm] = useState(initalizeForm());
   const {signIn} = useAuth(); //Context for the app flow
-
+  const navigation = useNavigation();
   const handleKeyboardDidShow = () => {
     setKeyboardActive(true);
   };
@@ -34,7 +35,8 @@ export default function Login() {
       setLoading(true);
       setTimeout(()=>{
         setLoading(false);
-      }, 5000)
+        signIn(loginForm);
+      }, 3000)
     }else{
       //show a toast
       Toast.show({
@@ -104,10 +106,10 @@ export default function Login() {
 
         <View style={styles.registerContainer}>
           <Text style={styles.registerText}>
-            <Text style={styles.registerLink}>Register now</Text>
+            <Text style={styles.registerLink} onPress={()=>navigation.navigate('Sign Up')}>Register now</Text>
           </Text>
         </View>
-        <Loading isVisible={loading} text={'STARTING...'}/>
+        <Loading isVisible={loading} text={'LOGGING IN...'}/>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
