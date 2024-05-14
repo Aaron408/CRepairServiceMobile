@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   upperView: {
-    backgroundColor: "#1C2025",
+    backgroundColor: "#14171B",
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

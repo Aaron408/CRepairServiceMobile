@@ -34,8 +34,9 @@ function IsLoggedUser(){
     <Tab.Navigator initialRouteName="Home" screenOptions={
       //TabBar styles configuration
       ({route})=>({
-        headerStyle: {backgroundColor: "#1C2025"},
+        headerStyle: {backgroundColor: "#14171B"},
         headerTitleAlign: 'center',
+        headerShadowVisible: false,
         headerTitle: () => {return null}, //Quit header title
         headerLeft: ()=>{ return <Icon type="material-community" name="logout" color='#fff' size={30} iconStyle={{marginLeft: '20%'}} onPress={signOut}/>},
         headerRight: ()=>{ return <Icon type="material-community" name="bell-ring" color='#fff' size={30} iconStyle={{marginRight: '20%'}}/>},
@@ -59,8 +60,8 @@ function IsLoggedUser(){
         },
         tabBarActiveTintColor: '#E6961D',
         tabBarInactiveTintColor: '#fff',
-        tabBarActiveBackgroundColor: '#1C2025',
-        tabBarInactiveBackgroundColor: '#1C2025',
+        tabBarActiveBackgroundColor: '#14171B',
+        tabBarInactiveBackgroundColor: '#14171B',
         tabBarShowLabel: false
       })
     }>
