@@ -62,7 +62,7 @@ function IsLoggedUser(){
         tabBarInactiveTintColor: '#fff',
         tabBarActiveBackgroundColor: '#14171B',
         tabBarInactiveBackgroundColor: '#14171B',
-        tabBarShowLabel: false
+        tabBarShowLabel: false,
       })
     }>
       <Tab.Screen name="Profile" component={Profile}/>
