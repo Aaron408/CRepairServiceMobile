@@ -60,9 +60,9 @@ export const AuthProvider = ({ children }) => {
         } catch (err) {
           console.log(err);
         }
-        console.log("CERROOOOO SESION UN cabron");
       },
       signUp: async (data) => {
+        console.log(data);
         // Logic for sign up
         dispatch({ type: "SIGN_IN", token: "pollito" });
       },

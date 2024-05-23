@@ -124,7 +124,7 @@ function ShowMechanicalWorkshops() {
     <View>
       {talleres.map((taller, index) => (
         <View style={styles.parentDiv} key={index}>
-          {/* Columna de la imagen */}
+          {/* Image and rating column */}
           <View style={styles.imageColumn}>
             <Image
               source={{
@@ -146,7 +146,7 @@ function ShowMechanicalWorkshops() {
               startingValue={taller.rate}
             />
           </View>
-          {/* Columna del texto y botón */}
+          {/* Text title and description column*/}
           <View style={styles.textColumn}>
             <Text style={styles.titleTaller}>Taller {taller.id}</Text>
             <Text style={styles.infoTaller}>{taller.name}</Text>

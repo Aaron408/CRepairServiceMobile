@@ -89,6 +89,7 @@ function AppContent() {
               component={Login}
             />
             <Stack.Screen
+              options={{headerShown: false}}
               name="Sign Up"
               component={SingUp}
             />
