@@ -61,7 +61,7 @@ export default function Login() {
       >
         <View style={styles.title}>
           <Image source={Logo} style={styles.imageLogo} />
-          <Text style={styles.titleText}>"Car Repair Service"</Text>
+          <Text style={styles.titleText}>"General"</Text>
         </View>
 
         <View style={styles.form}>
@@ -106,7 +106,7 @@ export default function Login() {
 
         <View style={styles.registerContainer}>
           <Text style={styles.registerText}>
-            <Text style={styles.registerLink} onPress={()=>navigation.navigate('Sign Up')}>Register now</Text>
+            <Text style={styles.registerLink} onPress={()=>navigation.navigate('Sign Up')}>SIGN UP</Text>
           </Text>
         </View>
         <Loading isVisible={loading} text={'LOGGING IN...'}/>

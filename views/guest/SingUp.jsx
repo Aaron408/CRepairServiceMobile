@@ -62,7 +62,7 @@ export default function Login() {
       >
         <View style={styles.title}>
           <Image source={Logo} style={styles.imageLogo} />
-          <Text style={styles.titleText}>"Car Repair Service"</Text>
+          <Text style={styles.titleText}>"General"</Text>
         </View>
 
         <View style={styles.form}>
@@ -139,7 +139,7 @@ export default function Login() {
 
         <View style={styles.registerContainer}>
           <Text style={styles.registerText}>
-            Already have an account? 
+            Already have an account? {" "}
             <Text style={styles.registerLink} onPress={()=>navigation.navigate('Sign Up')}>Sign in</Text>
           </Text>
         </View>

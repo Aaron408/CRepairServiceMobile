@@ -1,10 +1,13 @@
-import React from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, ScrollView, Text, FlatList } from "react-native";
 import { Input, Button, Icon, ListItem, Avatar, Image } from "@rneui/themed";
 import { Rating } from "react-native-ratings";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { useAuth } from "../../contexts/AuthContext";
+import { Dropdown } from "react-native-element-dropdown";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const talleres = [
   {
@@ -51,7 +54,29 @@ const talleres = [
   },
 ];
 
-export default function Home() {
+const data = [
+  { label: "5", value: "5" },
+  { label: "4", value: "4" },
+  { label: "3", value: "3" },
+  { label: "2", value: "2" },
+  { label: "1", value: "1" },
+];
+
+export default function Home( {iconName = 'star'} ) {
+  const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
+
+  const renderLabel = () => {
+    if (isFocus) {
+      return (
+        <Text style={[styles.label, isFocus && { color: "black" }]}>
+          Rating
+        </Text>
+      );
+    }
+    return null;
+  };
+
   const { state, signOut } = useAuth();
   const navigation = useNavigation();
 
@@ -60,13 +85,40 @@ export default function Home() {
       <ScrollView contentContainerStyle={styles.mainView}>
         <View style={styles.inputContainer}>
           <Input
-            inputContainerStyle={{borderBottomWidth:0}}
+            inputContainerStyle={{ borderBottomWidth: 0 }}
             containerStyle={styles.input}
             rightIcon={<Icon type="material-community" name="magnify" />}
           />
         </View>
         <View style={styles.filtersContainer}>
-          <RNEListItemAccordion />
+          {renderLabel()}
+          <Dropdown
+            style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={data}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={"..."}
+            value={value}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={(item) => {
+              setValue(item.value);
+              setIsFocus(false);
+            }}
+            renderLeftIcon={() => (
+              <FontAwesome
+                style={styles.icon}
+                color={isFocus ? "gold" : "gold"}
+                name={iconName} // Use the icon name passed as prop
+                size={20}
+              />
+            )}
+          />
         </View>
         <ShowMechanicalWorkshops />
       </ScrollView>
@@ -177,7 +229,7 @@ const styles = StyleSheet.create({
     width: "80%",
     height: 45,
     borderRadius: 30,
-    marginTop: 5,
+    marginTop: "5%",
     marginBottom: 10,
   },
   input: {
@@ -185,10 +237,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   filtersContainer: {
-    width: "50%",
+    width: "30%",
     alignSelf: "flex-end",
     marginRight: "5%",
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
     paddingTop: 10,
     paddingBottom: 10,
   },
@@ -202,7 +254,7 @@ const styles = StyleSheet.create({
     width: "90%",
     margin: 10,
     height: 200, // Ajuste de altura para que todos los elementos se visualicen correctamente
-    borderRadius: 40,
+    borderRadius: 30,
     paddingHorizontal: 10,
     shadowColor: "#000", // Color de la sombra
     shadowOffset: {
@@ -248,5 +300,44 @@ const styles = StyleSheet.create({
   moreButton: {
     borderRadius: 40,
     backgroundColor: "#FF7A00",
+  },
+
+  container: {
+    backgroundColor: "white",
+    padding: 16,
+  },
+  dropdown: {
+    height: 50,
+    borderColor: "gray",
+    borderWidth: 0.5,
+    borderRadius: 25,
+    paddingHorizontal: 8,
+    backgroundColor: "white",
+  },
+  icon: {
+    marginRight: 5,
+  },
+  label: {
+    position: "absolute",
+    backgroundColor: "white",
+    left: 22,
+    top: 8,
+    zIndex: 999,
+    paddingHorizontal: 8,
+    fontSize: 14,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
   },
 });

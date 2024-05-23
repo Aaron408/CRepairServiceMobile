@@ -22,25 +22,33 @@ export default function Profile() {
         <View style={styles.bottomView}>
           <View style={styles.floatViewBottom}>
             <Text style={styles.contactTitle}>Contact Info</Text>
-            <Text style={styles.contactInfo}><Icon type="material-community" name="phone" size={15} iconStyle={styles.contactIcons}/>+52 37740039</Text>
-            <Text style={styles.contactInfo}><Icon type="material-community" name="email" size={15} iconStyle={styles.contactIcons}/>user*****@gmail.com</Text>
+            <View style={styles.contactInfoContainer}>
+              <View style={styles.contactInfo}>
+                <Icon type="material-community" name="phone" size={15} iconStyle={styles.contactIcons}/>
+                <Text style={styles.contactText}>+52 37740039</Text>
+              </View>
+              <View style={styles.contactInfo}>
+                <Icon type="material-community" name="email" size={15} iconStyle={styles.contactIcons}/>
+                <Text style={styles.contactText}>user*****@gmail.com</Text>
+              </View>
+            </View>
             <Button
               title='Edit'
               buttonStyle={styles.editBtn}
             />
-          <View style={styles.lineSeparation}></View>
-          <View style={styles.containerChangeOptions}>
-          <Text style={styles.contactInfo}>
-            <Icon type="material-community" name="security" size={15} iconStyle={{color: 'white', marginHorizontal: 5}}/>
-            Change Password
-            <Button
-              title='Change'
-              size="sm"
-              buttonStyle={styles.changeBtn}
-              containerStyle={styles.btnChangeContainer}
-            />
-          </Text>
-          </View>
+            <View style={styles.lineSeparation}></View>
+            <View style={styles.containerChangeOptions}>
+              <View style={styles.changePasswordContainer}>
+                <Icon type="material-community" name="security" size={15} iconStyle={{color: 'white', marginHorizontal: 5}}/>
+                <Text style={styles.contactText}>Change Password</Text>
+                <Button
+                  title='Change'
+                  size="sm"
+                  buttonStyle={styles.changeBtn}
+                  containerStyle={styles.btnChangeContainer}
+                />
+              </View>
+            </View>
           </View>
         </View>
       </View>
@@ -72,59 +80,77 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     backgroundColor: "#E6961D",
-    flex: 5,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   floatViewBottom: {
     backgroundColor: "#14171B",
-    borderRadius: 10,
+    borderRadius: 35,
     width: '80%',
     height: '80%',
     textAlign: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 15,
   },
-  contactIcons:{
+  contactIcons: {
     color: '#000',
     backgroundColor: '#fff',
     borderRadius: 100,
     marginHorizontal: 10,
-    padding: 5
+    padding: 5,
   },
-  contactTitle:{
-    color:'#fff',
+  contactTitle: {
+    color: '#fff',
     fontWeight: '600',
     marginVertical: 10,
-    fontSize: 20
+    fontSize: 22,
+    textAlign: 'center', // Center align the title
   },
-  contactInfo:{
+  contactInfoContainer: {
+    width: '100%',
+    alignItems: 'start',
+    paddingHorizontal: 10,
+    marginTop: 5
+  },
+  contactInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  contactText: {
     color: '#fff',
-    marginBottom: 5
   },
-  editBtn:{
-    borderRadius:50,
+  editBtn: {
+    borderRadius: 50,
     paddingHorizontal: 5,
     color: '#fff',
-    backgroundColor:'#FF7A00',
+    backgroundColor: '#FF7A00',
     width: 150,
     fontSize: 5,
     fontWeight: 'bold',
-    marginTop: 10
+    marginTop: 5,
+    alignSelf: 'center',
   },
-  lineSeparation:{
-    height:3,
+  lineSeparation: {
+    height: 3,
     width: '95%',
     borderRadius: 100,
     backgroundColor: '#fff',
-    marginVertical: 20
+    marginVertical: 20,
   },
-  containerChangeOptions:{
+  containerChangeOptions: {
     height: '30%',
-    width:'100%',
-    alignItems: 'center'
+    width: '100%',
+    alignItems: 'center',
   },
-  changeBtn:{
-    backgroundColor:'#FF7A00',
+  changePasswordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  changeBtn: {
+    backgroundColor: '#FF7A00',
     color: '#fff',
     marginHorizontal: 20,
     marginTop: 5,
@@ -132,8 +158,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 5,
   },
-  btnChangeContainer:{
+  btnChangeContainer: {
     fontSize: 10,
-    fontWeight: '500'
-  }
+    fontWeight: '500',
+  },
 });
+

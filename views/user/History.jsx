@@ -1,85 +1,94 @@
-import React from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
-import { Button } from "@rneui/themed";
-import { useNavigation } from "@react-navigation/native";
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function Home() {
   const { state, signOut } = useAuth();
-  const navigation = useNavigation();
 
   return (
     <ScrollView contentContainerStyle={styles.mainView}>
-      <StackHistoryOption title="Your Orders" description="View your completed orders."/>
-      <StackHistoryOption title="In process" description="View your active order, if you have it."/>
-      <StackHistoryOption title="New Order" description="Place a new order"/>
+      <View style={styles.container}>
+        <StackHistoryOption title="Your Orders" description="View your completed orders." buttonText="More"/>
+        <StackHistoryOption title="In process" description="View your active order, if you have it." buttonText="More"/>
+        <StackHistoryOption title="New Order" description="Place a new order" buttonText="New"/>
+      </View>
     </ScrollView>
   );
 }
 
-// Content Logic
-function StackHistoryOption({title='Title option', description='Info About', actionButton = ()=>console.log('hello')}) {
+function StackHistoryOption({ title='Title option', description='Info About', buttonText }) {
   return (
     <View style={styles.parentDiv}>
-      {/* Text title and description */}
-      <View style={styles.textColumn}>
-        <Text style={styles.titleTaller}>{title}</Text>
-        <Text style={styles.infoTaller}>{description}</Text>
-      </View>
-      <View style={styles.buttonColumn}>
-        <Button
-          title="More"
-          onPress={actionButton}
-          buttonStyle={styles.moreButton}
-        />
+      <Text style={styles.titleTaller}>{title}</Text>
+      <View style={styles.buttonRow}>
+        <Text style={styles.description}>{description}</Text>
+        <TouchableOpacity
+          onPress={() => console.log('Button pressed')}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>{buttonText}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-// Screen Styles
 const styles = StyleSheet.create({
   mainView: {
     backgroundColor: "#E6961D",
-    paddingVertical: 20, // Espacio adicional para permitir el desplazamiento
+    paddingVertical: 20,
+    alignItems: 'center',
+    height: "100%",
+    justifyContent: "center"
+  },
+  container: {
+    width: '90%',
+    marginVertical: 10,
   },
   parentDiv: {
-    flexDirection: "row",
     backgroundColor: "#14171B",
-    width: "90%",
-    margin: 10,
-    height: 200, // Ajuste de altura para que todos los elementos se visualicen correctamente
-    borderRadius: 40,
-    paddingHorizontal: 10,
-    shadowColor: "#000", // Color de la sombra
+    marginVertical: 10,
+    paddingTop: 25,
+    paddingBottom: 15,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    height: 150,
+    shadowColor: "#000",
     shadowOffset: {
-      width: 5, // Desplazamiento horizontal de la sombra
-      height: 15, // Desplazamiento vertical de la sombra
+      width: 0,
+      height: 2,
     },
-    shadowOpacity: 1, // Aumentar la opacidad de la sombra
-    shadowRadius: 10, // Aumentar el radio de desenfoque de la sombra
-    elevation: 15, // Aumentar la elevación para Android
-  },
-  textColumn: {
-    flex: 1,
-    padding: 10,
-  },
-  buttonColumn: {
-    flex: 1,
-    alignContent: 'center',
-    alignSelf: 'center'
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   titleTaller: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 20,
-    margin: 15,
+    marginBottom: 10,
+    textAlign: 'center',
   },
-  infoTaller: {
-    color: "#fff",
+  buttonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  moreButton: {
-    borderRadius: 40,
+  description: {
+    paddingTop: 12,
+    flex: 0.7,
+    color: '#fff',
+    marginRight: 5,
+  },
+  button: {
     backgroundColor: "#FF7A00",
+    paddingVertical: 5,
+    paddingHorizontal: 35,
+    borderRadius: 40,
+    marginTop: "5%"
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
