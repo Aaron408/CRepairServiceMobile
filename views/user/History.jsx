@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   parentDiv: {
     backgroundColor: "#14171B",
     marginVertical: 10,
-    paddingTop: 25,
+    paddingTop: 20,
     paddingBottom: 15,
     paddingHorizontal: 20,
     borderRadius: 25,

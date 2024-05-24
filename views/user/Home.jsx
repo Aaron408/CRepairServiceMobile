@@ -126,50 +126,6 @@ export default function Home( {iconName = 'star'} ) {
   );
 }
 
-// Example of Accordion of items for filter the current stack of data
-function RNEListItemAccordion() {
-  const [expanded, setExpanded] = React.useState(false);
-  return (
-    <ListItem.Accordion
-      content={
-        <ListItem.Content>
-          <ListItem.Title style={{ fontWeight: "bold" }}>Rating</ListItem.Title>
-        </ListItem.Content>
-      }
-      isExpanded={expanded}
-      onPress={() => {
-        setExpanded(!expanded);
-      }}
-      style={styles.listAccordion}
-    >
-      <ListItem>
-        <Avatar
-          rounded
-          source={{
-            uri: "https://randomuser.me/api/portraits/men/32.jpg",
-          }}
-        />
-        <ListItem.Content>
-          <ListItem.Title>John Doe</ListItem.Title>
-          <ListItem.Subtitle>Principle Engineer</ListItem.Subtitle>
-        </ListItem.Content>
-      </ListItem>
-      <ListItem>
-        <Avatar
-          rounded
-          source={{
-            uri: "https://randomuser.me/api/portraits/men/36.jpg",
-          }}
-        />
-        <ListItem.Content>
-          <ListItem.Title>Albert</ListItem.Title>
-          <ListItem.Subtitle>Staff Engineer</ListItem.Subtitle>
-        </ListItem.Content>
-      </ListItem>
-    </ListItem.Accordion>
-  );
-}
-
 // Content Logic
 function ShowMechanicalWorkshops() {
   return (

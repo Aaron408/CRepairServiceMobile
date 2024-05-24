@@ -1,4 +1,5 @@
 import "react-native-gesture-handler";
+import { Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Toast from "react-native-toast-message";
@@ -34,11 +35,32 @@ function IsLoggedUser(){
     <Tab.Navigator initialRouteName="Home" screenOptions={
       //TabBar styles configuration
       ({route})=>({
-        headerStyle: {backgroundColor: "#14171B"},
+        headerStyle: {
+          backgroundColor: "#14171B", 
+          height: 100
+        },
         headerTitleAlign: 'center',
         headerShadowVisible: false,
         headerTitle: () => {return null}, //Quit header title
-        headerLeft: ()=>{ return <Icon type="material-community" name="logout" color='#fff' size={30} iconStyle={{marginLeft: '20%'}} onPress={signOut}/>},
+
+        //Solo mostrar el logout cuando se está en pantalla de perfil
+        headerLeft: ()=>{ if (route.name === "Profile") {
+            return (
+              <Icon
+                type="material-community"
+                name="logout"
+                color="#fff"
+                size={30}
+                iconStyle={{ marginLeft: "20%" }}
+                onPress={signOut}
+              />
+            );
+          } else {
+            return (
+              <Image source={require('./images/Logo1.png')} style={{ width: 50, height: 42, marginLeft: 20 }} />
+            );
+          }
+        },
         headerRight: ()=>{ return <Icon type="material-community" name="bell-ring" color='#fff' size={30} iconStyle={{marginRight: '20%'}}/>},
         tabBarIcon: ({color, size}) =>{
           let iconName = '';
@@ -63,10 +85,14 @@ function IsLoggedUser(){
         tabBarActiveBackgroundColor: '#14171B',
         tabBarInactiveBackgroundColor: '#14171B',
         tabBarShowLabel: false,
+        tabBarStyle: {
+          borderTopWidth: 0,
+          height: 55
+        },
       })
     }>
-      <Tab.Screen name="Profile" component={Profile}/>
       <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Profile" component={Profile}/>
       <Tab.Screen name="History" component={History} />
     </Tab.Navigator>
   )
