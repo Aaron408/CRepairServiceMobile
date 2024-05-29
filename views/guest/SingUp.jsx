@@ -4,7 +4,7 @@ import { Input, Icon, Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import Toast from "react-native-toast-message";
-import Logo from "../../assets/BlackLogo.png";
+import Logo from "../../assets/Logo.png";
 import { useAuth } from "../../contexts/AuthContext";
 import { validateEmail } from "../../services/EmailTest"; //return true if email is valid
 import Loading from "../../components/Loading";
@@ -139,8 +139,8 @@ export default function Login() {
 
         <View style={styles.registerContainer}>
           <Text style={styles.registerText}>
-            Already have an account? {" "}
-            <Text style={styles.registerLink} onPress={()=>navigation.navigate('Sign Up')}>Sign in</Text>
+            Have an account? {" "}
+            <Text style={styles.registerLink} onPress={()=>navigation.navigate('login')}>SIGN IN</Text>
           </Text>
         </View>
         <Loading isVisible={loading} text={'LOGGING IN...'}/>
@@ -152,12 +152,14 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E6961D",
+    backgroundColor: "#14171B",
   },
   scrollViewContent: {
     flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: 40,
+    paddingBottom: 50
   },
   keyboardActive: {
     justifyContent: "flex-start",
@@ -172,7 +174,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   titleText: {
-    color: "#0e0e0e",
+    color: "#F7CD44",
     fontSize: 24,
     marginTop: 10,
   },
@@ -181,7 +183,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   label: {
-    color: "#0e0e0e",
+    color: "white",
     marginBottom: 5,
     paddingLeft: 10,
     paddingBottom: 5,
@@ -210,7 +212,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5
   },
   button: {
-    backgroundColor: "#0e0e0e",
+    backgroundColor: "#E6961D",
     borderRadius: 25,
     paddingHorizontal: 40,
     paddingVertical: 10,
@@ -219,7 +221,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonTitle: {
-    color: "#fff",
+    color: "black",
     fontWeight: "bold",
     fontSize: 18,
   },
@@ -229,12 +231,12 @@ const styles = StyleSheet.create({
     paddingTop: 5,
   },
   registerText: {
-    color: "#0e0e0e",
+    color: "white",
     fontSize: 16,
     marginBottom: 10
   },
   registerLink: {
-    color: "#fff",
+    color: "#E6961D",
     fontWeight: '700',
     textDecorationLine: 'underline',
   },

@@ -96,7 +96,6 @@ export default function Home( {iconName = 'star'} ) {
             style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
             iconStyle={styles.iconStyle}
             data={data}
             maxHeight={300}
@@ -257,13 +256,12 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     backgroundColor: "#FF7A00",
   },
-
   container: {
     backgroundColor: "white",
     padding: 16,
   },
   dropdown: {
-    height: 50,
+    height: 45,
     borderColor: "gray",
     borderWidth: 0.5,
     borderRadius: 25,
@@ -291,9 +289,5 @@ const styles = StyleSheet.create({
   iconStyle: {
     width: 20,
     height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
   },
 });
