@@ -8,6 +8,7 @@ import Logo from "../../assets/Logo.png";
 import { useAuth } from "../../contexts/AuthContext";
 import { validateEmail } from "../../services/EmailTest"; //return true if email is valid
 import Loading from "../../components/Loading";
+
 export default function Login() {
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [keyboardActive, setKeyboardActive] = useState(false);

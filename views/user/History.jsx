@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useAuth } from "../../contexts/AuthContext";
 
-export default function Home() {
+export default function History () {
   const { state, signOut } = useAuth();
 
   return (

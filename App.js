@@ -38,6 +38,8 @@ export default function App() {
   );
 }
 
+const Divider = () => <View style={styles.divider} />;
+
 //Components variables for Redirect app
 function IsLoggedUser() {
   const { state, signOut } = useAuth();
@@ -72,23 +74,46 @@ function IsLoggedUser() {
                       />
                     </MenuTrigger>
                     <MenuOptions style={{ backgroundColor: "#1F2227"}}>
-                      <MenuOption onSelect={() => alert("NO sé que hay aquí")} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 11, paddingHorizontal: "10%"}}>
-                          <Text style={{ color: 'white', marginRight: 15 }}>Pendiente</Text>
+                      <MenuOption onSelect={() => alert("Ajustes")} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 11, paddingHorizontal: "10%"}}>
                           <Icon
-                            type="entypo"
-                            name="info-with-circle"
+                            type="feather"
+                            name="settings"
                             color="white"
                             size={20}
+                            style={{marginRight: 15}}
                           />
+                          <Text style={{ color: 'white'}}>Settings</Text>
                       </MenuOption>
-                      <MenuOption onSelect={signOut} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 11, paddingHorizontal: "10%"}}>
-                        <Text style={{ color: 'white', marginRight: 15 }}>Logout</Text>
+                      <MenuOption onSelect={() => alert("Terminos y condiciones")} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 11, paddingHorizontal: "10%"}}>
+                          <Icon
+                            type="material-icons"
+                            name="my-library-books"
+                            color="white"
+                            size={20}
+                            style={{marginRight: 15}}
+                          />
+                          <Text style={{ color: 'white'}}>Terms & Conditions</Text>
+                      </MenuOption>
+                      <MenuOption onSelect={() => alert("Servicio al cliente")} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 11, paddingHorizontal: "10%"}}>
+                          <Icon
+                            type="feather"
+                            name="headphones"
+                            color="white"
+                            size={20}
+                            style={{marginRight: 15}}
+                          />
+                          <Text style={{ color: 'white'}}>Client service</Text>
+                      </MenuOption>
+                      <Divider />
+                      <MenuOption onSelect={signOut} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 15, paddingHorizontal: "10%"}}>
                         <Icon
                           type="material-community"
                           name="logout"
                           color="white"
                           size={20}
+                          style={{marginRight: 15}}
                         />
+                        <Text style={{ color: 'white'}}>Logout</Text>
                       </MenuOption>
                     </MenuOptions>
                   </Menu>
@@ -190,3 +215,11 @@ function AppContent() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  divider: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: "#7F8487",
+  },
+});
+ 

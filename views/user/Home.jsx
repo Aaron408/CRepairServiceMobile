@@ -148,7 +148,7 @@ function ShowMechanicalWorkshops() {
               tintColor="#1C2025"
               ratingColor="#E7E700"
               ratingCount={5}
-              imageSize={30}
+              imageSize={30.2}
               readonly={true}
               startingValue={taller.rate}
             />
@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
     width: 150, // Ajusta la imagen al ancho del contenedor
     height: 100, // Ajusta la imagen al alto del contenedor
     borderRadius: 10,
+    marginBottom: 5
   },
   ratingContainer: {
     height: "15%",
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 20,
-    marginBottom: 10,
+    marginBottom: 2,
   },
   infoTaller: {
     color: "#fff",
